@@ -13,13 +13,14 @@ namespace IdentixSocketReader
             if (serialPort == null)
             {
                 serialPort = new SerialPort("COM3", 115200, Parity.None, 8, StopBits.One);
+                serialPort.Handshake = Handshake.RequestToSend;
                 serialPort.DataReceived += new SerialDataReceivedEventHandler(SerialReceivedData);
             }
 
-            OpenSerialPort();
+            OpenSerialPort();            
             StartInventory();
 
-            Thread.Sleep(5000);
+            Thread.Sleep(20000);
 
             StopInventory();
             CloseSerialPort();
